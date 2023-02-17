@@ -39,29 +39,32 @@ class Webtoon extends StatelessWidget {
                   color: Colors.grey.withOpacity(0.5),
                 ),
               ),
-              Column(
-                children: [
-                  Container(
-                    clipBehavior: Clip.hardEdge,
-                    width: 240,
-                    height: 312,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Stack(
-                      children: [
-                        Image.network(thumb),
-                        Container(
-                          decoration: BoxDecoration(
-                            border:
-                                Border.all(color: Colors.grey.withOpacity(0.5)),
-                            borderRadius: BorderRadius.circular(15),
+              Hero(
+                tag: id,
+                child: Column(
+                  children: [
+                    Container(
+                      clipBehavior: Clip.hardEdge,
+                      width: 240,
+                      height: 312,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Stack(
+                        children: [
+                          Image.network(thumb),
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Colors.grey.withOpacity(0.5)),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
