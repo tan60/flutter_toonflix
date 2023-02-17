@@ -24,9 +24,60 @@ class Webtoon extends StatelessWidget {
                 id: id,
               ),
               fullscreenDialog: true,
+              allowSnapshotting: true,
             ));
       },
       child: Column(
+        children: [
+          Stack(
+            alignment: AlignmentDirectional.center,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 22,
+                  color: Colors.grey.withOpacity(0.5),
+                ),
+              ),
+              Column(
+                children: [
+                  Container(
+                    clipBehavior: Clip.hardEdge,
+                    width: 240,
+                    height: 312,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Stack(
+                      children: [
+                        Image.network(thumb),
+                        Container(
+                          decoration: BoxDecoration(
+                            border:
+                                Border.all(color: Colors.grey.withOpacity(0.5)),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 22,
+            ),
+          ),
+        ],
+      ),
+
+      /* child: Column(
         children: [
           Container(
             width: 250,
@@ -40,7 +91,23 @@ class Webtoon extends StatelessWidget {
                     color: Colors.black.withOpacity(0.5),
                   ),
                 ]),
-            child: Image.network(thumb),
+            child: Image.network(
+              thumb,
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) {
+                  return child;
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                              loadingProgress.expectedTotalBytes!
+                          : null,
+                    ),
+                  );
+                }
+              },
+            ),
           ),
           const SizedBox(
             height: 10,
@@ -52,7 +119,7 @@ class Webtoon extends StatelessWidget {
             ),
           ),
         ],
-      ),
+      ), */
     );
   }
 }
